@@ -1,4 +1,3 @@
-#include <algorithm>
 #include <sstream>
 #include "TransliterationTree.h"
 
@@ -56,12 +55,13 @@ char TransliterationTree::GetCharacterByEncodedString(std::string encodedCharact
 }
 
 std::string TransliterationTree::Decode(std::string messageToDecode) {
-    std::replace( messageToDecode.begin(), messageToDecode.end(), 'x', ' ');
     std::string encodedCharacterString, decodedMessage = "";
 
     std::istringstream iss(messageToDecode);
 
-    while( iss >> encodedCharacterString )
+    iss.ignore(1);
+
+    while(getline(iss, encodedCharacterString, 'x'))
     {
         decodedMessage += GetCharacterByEncodedString(encodedCharacterString);
     }

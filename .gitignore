@@ -1,4 +1,5 @@
 bin/
 obj/
+Main.o
 *.txt
 .vscode/
