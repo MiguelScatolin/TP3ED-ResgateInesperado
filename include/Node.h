@@ -5,8 +5,8 @@ template<class T>
 class Node
 {
     public:
-        Node() {};
-        Node(T item) : item(item), next(nullptr) {}
+        Node() : left(nullptr), right(nullptr) {}
+        Node(T item) : item(item), left(nullptr), right(nullptr) {}
         T GetItem() { return item; };
         void SetItem(T newItem) { item = newItem; };
         Node<T>* GetLeft() { return left; };
