@@ -27,10 +27,10 @@ int main(int argc, char* argv[]) {
                 case 'A':
                     tree.AddTree(message);
                     break;
-                /* case 'C':
+                case 'C':
                     encodedMessage = tree.Encode(message);
                     std::cout << encodedMessage << std::endl;
-                    break; */
+                    break;
                 case 'D':
                     decodedMessage = tree.Decode(message);
                     std::cout << decodedMessage << std::endl;

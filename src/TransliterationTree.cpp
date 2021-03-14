@@ -1,4 +1,5 @@
 #include <sstream>
+#include <stdlib.h>
 #include "TransliterationTree.h"
 
 TransliterationTree::TransliterationTree() {
@@ -35,8 +36,46 @@ void TransliterationTree::AddTree(std::string sequence) {
         AddNode(&root, c);
 }
 
+int getRandomNumberFromZeroToFour() {
+    return rand() % 5;
+}
+
+char getRandomOddNumber() {
+    return (getRandomNumberFromZeroToFour() * 2) + 1 + '0';
+}
+
+char getRandomEvenNumber() {
+    return (getRandomNumberFromZeroToFour() * 2) + '0';
+}
+
+std::string TransliterationTree::EncodeCharacter(char characterToEncode) {
+    Node<char> *p = &root;
+    std::string encodedCharacter = "";
+    while (p && characterToEncode != p->GetItem())
+    {
+        if(characterToEncode > p->GetItem()) {
+            encodedCharacter += getRandomEvenNumber();
+            p = p->GetRight();
+        }
+        else {
+            encodedCharacter += getRandomOddNumber();
+            p = p->GetLeft();
+        }
+
+    }
+
+    encodedCharacter += "x";
+
+    return encodedCharacter;
+}
+
 std::string TransliterationTree::Encode(std::string messageToEncode) {
-    return "a";
+    std::string encodedMessage = "x";
+    for (char const &character: messageToEncode) {
+        encodedMessage += EncodeCharacter(character);
+    }
+
+    return encodedMessage;
 }
 
 char TransliterationTree::GetCharacterByEncodedString(std::string encodedCharacterString) {

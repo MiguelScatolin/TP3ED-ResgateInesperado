@@ -15,6 +15,7 @@ class TransliterationTree
     private:
         Node<char> root;
         void AddNode(Node<char> *node, char newCharacter);
+        std::string EncodeCharacter(char characterToEncode);
         char GetCharacterByEncodedString(std::string encodedCharacterString);
 };
 
